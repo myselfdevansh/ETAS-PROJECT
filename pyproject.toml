@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "etas-toolkit"
+version = "0.1.0"
+description = "A verified Python ETAS forecasting toolkit"
+authors = [
+    {name = "Devansh Verma"}
+]
+requires-python = ">=3.12"
+dependencies = [
+    "numpy",
+    "scipy",
+    "pandas",
+    "pyarrow",
+    "scikit-learn",
+    "obspy",
+    "pyproj",
+    "cartopy",
+    "pygmt",
+    "networkx",
+    "matplotlib",
+    "jupyterlab",
+    "ipykernel",
+    "pytest",
+    "seismostats"
+]
