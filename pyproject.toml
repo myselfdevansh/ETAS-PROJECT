@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
@@ -26,4 +27,32 @@ dependencies = [
     "ipykernel",
     "pytest",
     "seismostats"
+=======
+
+```toml
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "etas_toolkit"
+version = "0.1.0"
+description = "A Python library for Epidemic-Type Aftershock Sequence (ETAS) earthquake forecasting."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    {name = "Devansh Verma"}
+]
+dependencies = [
+    "pandas",
+    "numpy",
+    "obspy",
+    "pyproj",
+    "pyarrow"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest"
+>>>>>>> phase_1_setup
 ]
