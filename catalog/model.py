@@ -31,7 +31,7 @@ class Catalog:
         
         # Ensure the 'time' column is explicitly treated as UTC datetime
         if not pd.api.types.is_datetime64_any_dtype(self.data['time']):
-            self.data['time'] = pd.to_datetime(self.data['time'], utc=True)
+            self.data['time'] = pd.to_datetime(self.data['time'], format='ISO8601', utc=True)
 
     @classmethod
     def _validate(cls, df: pd.DataFrame) -> None:
@@ -61,8 +61,8 @@ class Catalog:
             raise FileNotFoundError(f"The file {filepath} does not exist.")
             
         df = pd.read_csv(filepath)
-        # Re-parse the time column upon loading from text format
-        df['time'] = pd.to_datetime(df['time'], utc=True)
+        # Re-parse the time column using ISO8601 to handle missing fractional seconds
+        df['time'] = pd.to_datetime(df['time'], format='ISO8601', utc=True)
         return cls(df)
 
     def to_parquet(self, filepath: str) -> None:
