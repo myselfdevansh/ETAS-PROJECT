@@ -35,6 +35,14 @@ The sources registry includes an automated time-window chunking feature that eas
 python -m sources.registry --region california --from_date 2010-01-01 --to_date 2020-01-01 --min-mag 2.5
 ```
 
+## Phase 3: Visualization Utilities (Exploratory Data Analysis)
+The `viz/` module handles all plotting and geographical rendering for the catalogs.
+* **Frequency-Magnitude Distribution (`fmd.py`)**: Plots the Gutenberg-Richter distribution (cumulative and incremental).
+* **Epicenter Maps (`maps.py`)**: Renders geographical maps using `cartopy`, automatically scaling markers by magnitude and coloring by depth.
+* **Temporal Evolution (`time.py` & `interevent.py`)**: Plots cumulative seismicity, time-magnitude stem plots, inter-event time distributions, and cumulative moment release.
+* **Spatial Cross-Sections (`space.py`)**: Depth vs. Longitude profiles.
+* **Multi-Panel Dashboards (`dashboard.py`)**: A single capstone function `create_eda_dashboard()` generates a complete EDA summary figure for any region and saves it to `docs/figures/`.
+
 ## Repository Structure
 * `sources/`: Catalog downloaders (FDSN + per-agency + scrapers)
 * `catalog/`: Data model, cleaning, deduplication, caching
