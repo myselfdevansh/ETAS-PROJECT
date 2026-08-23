@@ -1,10 +1,5 @@
 import pandas as pd
 import obspy
-
-def parse_quakeml_to_df(file_path: str) -> pd.DataFrame:
-    """
-    Reads a QuakeML file and flattens the nested event data 
-    into a structured Pandas DataFrame.
 from datetime import timezone
 
 def parse_quakeml_to_df(file_path: str, start_time=None) -> pd.DataFrame:
