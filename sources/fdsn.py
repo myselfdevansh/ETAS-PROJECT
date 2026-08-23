@@ -30,38 +30,43 @@ def fetch_fdsn(
         
         # Save as QuakeML and parse
         temp_xml = f"temp_fdsn_fetch_{start_time.timestamp()}.xml"
-        catalog_obspy.write(temp_xml, format="QUAKEML")
-        df = parse_quakeml_to_df(temp_xml)
-        if os.path.exists(temp_xml):
-            os.remove(temp_xml)
-        return Catalog(df)
+        try:
+            cat.write(temp_xml, format="QUAKEML")
+            
+            # Use our Phase 1 parser to enforce the Catalog schema
+            df = parse_quakeml_to_df(temp_xml, start_time=start_time)
+            return Catalog(df)
+            
+        finally:
+            if os.path.exists(temp_xml):
+                os.remove(temp_xml)
         
     except Exception as e:
         error_str = str(e).lower()
-        if "204" in error_str or "no data available" in error_str:
+        if getattr(e, "status_code", None) == 204 or "204" in error_str or "no data" in error_str:
             print(f"[{base_url}] No events found (HTTP 204). Returning empty catalog.")
             return Catalog(pd.DataFrame(columns=Catalog.REQUIRED_COLUMNS))
-        elif "400" in error_str or "request would result in too much data" in error_str or "maximum" in error_str:
+        elif getattr(e, "status_code", None) == 400 or "400" in error_str or "request would result in too much data" in error_str:
             print(f"[{base_url}] Cap exceeded. Splitting time window: {start_time} to {end_time}")
             
             # Prevent infinite recursion if the window is too small (e.g., < 1 second)
             if (end_time - start_time).total_seconds() < 1:
-                print("Warning: Time window < 1s but still exceeding limits. Skipping.")
-                return Catalog(pd.DataFrame(columns=Catalog.REQUIRED_COLUMNS))
+                raise ValueError("Time window < 1s still exceeds max events.")
                 
+            # Split time window exactly in half
             mid_time = start_time + (end_time - start_time) / 2
             
-            # Recurse on both halves
+            # Recursive calls
             cat1 = fetch_fdsn(base_url, bbox, (start_time, mid_time), min_mag)
             cat2 = fetch_fdsn(base_url, bbox, (mid_time, end_time), min_mag)
             
-            # Merge DataFrames
+            # Combine the results
             merged_df = pd.concat([cat1.data, cat2.data], ignore_index=True)
+            merged_df = merged_df.drop_duplicates(subset=['event-id'])
             if not merged_df.empty:
                 merged_df = merged_df.sort_values('time').reset_index(drop=True)
-                t0 = merged_df['time'].iloc[0]
-                merged_df['time_days'] = (merged_df['time'] - t0).dt.total_seconds() / (24 * 3600)
                 
             return Catalog(merged_df)
         else:
+            print(f"[{base_url}] Failed to fetch data: {e}")
             raise e
