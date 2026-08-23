@@ -31,7 +31,7 @@ def fetch_fdsn(
         # Save as QuakeML and parse
         temp_xml = f"temp_fdsn_fetch_{start_time.timestamp()}.xml"
         try:
-            cat.write(temp_xml, format="QUAKEML")
+            catalog_obspy.write(temp_xml, format="QUAKEML")
             
             # Use our Phase 1 parser to enforce the Catalog schema
             df = parse_quakeml_to_df(temp_xml, start_time=start_time)

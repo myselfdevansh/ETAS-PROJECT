@@ -33,7 +33,8 @@ def parse_quakeml_to_df(file_path: str, start_time=None) -> pd.DataFrame:
                 'lat': lat,
                 'depth': depth,
                 'magnitude': magnitude,
-                'mag_type': mag_type
+                'magnitude-type': mag_type,
+                'source-agency': origin.creation_info.agency_id if origin.creation_info else 'Unknown'
             })
             
     catalog_df = pd.DataFrame(events_data)
