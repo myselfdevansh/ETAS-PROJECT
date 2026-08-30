@@ -43,7 +43,12 @@ The `viz/` module handles all plotting and geographical rendering for the catalo
 * **Spatial Cross-Sections (`space.py`)**: Depth vs. Longitude profiles.
 * **Multi-Panel Dashboards (`dashboard.py`)**: A single capstone function `create_eda_dashboard()` generates a complete EDA summary figure for any region and saves it to `docs/figures/`.
 
-## Repository Structure
+
+## Phase 4: Magnitude of Completeness ($)
+Before the ETAS model can be calibrated, the network's completeness threshold must be established. The quality/ module implements comprehensive statistical methods for this:
+* **Estimators (mc.py)**: Includes MAXC (Maximum Curvature), GFT (Goodness-of-Fit Test), MBS ($-value Stability), EMR (Entire-Magnitude-Range), and MBASS (Median-based slope change).
+* **Spatial Mapping (mc_map.py)**: Utilizes a scipy.spatial.cKDTree to map geographic $ variations across regions using constant-N nearest-neighbor sampling.
+\n## Repository Structure
 * `sources/`: Catalog downloaders (FDSN + per-agency + scrapers)
 * `catalog/`: Data model, cleaning, deduplication, caching
 * `quality/`: Mc estimation, b-value, QC
