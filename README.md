@@ -48,6 +48,17 @@ The `viz/` module handles all plotting and geographical rendering for the catalo
 Before the ETAS model can be calibrated, the network's completeness threshold must be established. The quality/ module implements comprehensive statistical methods for this:
 * **Estimators (mc.py)**: Includes MAXC (Maximum Curvature), GFT (Goodness-of-Fit Test), MBS ($-value Stability), EMR (Entire-Magnitude-Range), and MBASS (Median-based slope change).
 * **Spatial Mapping (mc_map.py)**: Utilizes a scipy.spatial.cKDTree to map geographic $ variations across regions using constant-N nearest-neighbor sampling.
+\n
+## Phase 5: Estimating the $b$-value
+The `quality/b_value.py` module accurately calculates the Gutenberg-Richter $b$-value, a critical prior for ETAS modeling:
+* **Aki-Utsu**: Standard maximum likelihood estimation.
+* **Tinti & Mulargia**: Robust estimation that mathematically corrects for the artificial magnitude binning present in modern digital seismic networks.
+* **Shi & Bolt Uncertainty**: Rigorous statistical bounds ($\pm \sigma$) applied to the estimates.
+\n
+## Phase 6: ETAS Model Formulation & Likelihood
+The `model/` module contains the mathematical heart of the Epidemic-Type Aftershock Sequence process:
+* **Kernels (`kernels.py`)**: Implements the temporal Omori-Utsu decay $(t+c)^{-p}$, the spatial power-law distance decay, and the exponential productivity law.
+* **Likelihood Engine (`likelihood.py`)**: A robust spatial-temporal integral evaluator that calculates the exact ETAS log-likelihood over a given catalog for any set of ETAS parameters.
 \n## Repository Structure
 * `sources/`: Catalog downloaders (FDSN + per-agency + scrapers)
 * `catalog/`: Data model, cleaning, deduplication, caching
