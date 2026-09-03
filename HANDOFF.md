@@ -1,6 +1,6 @@
 # ETAS Toolkit — Handoff State
 
-**Current Phase:** Phase 5 (Complete) $\rightarrow$ Phase 6 (Starting)
+**Current Phase:** Phase 6 (Complete) $\rightarrow$ Phase 7 (Starting)
 
 ---
 
@@ -25,6 +25,10 @@ otebooks/).
   * Standard Aki-Utsu maximum likelihood estimation.
   * Robust Tinti & Mulargia estimator to mathematically correct for artificial magnitude binning.
   * Rigorous Shi & Bolt statistical uncertainty bounds ($\pm \sigma$).
+* **Phase 6 (ETAS Model & Likelihood):** Built the `model/` core containing:
+  * Temporal (Omori-Utsu) and spatial (power-law) triggering decay kernels.
+  * The exponential aftershock productivity law.
+  * The complex spatial-temporal log-likelihood integral evaluator (`model/likelihood.py`).
 
 ## 2. Verified
 * **Phase 4 Verification:** Successfully executed 

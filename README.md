@@ -54,6 +54,11 @@ The `quality/b_value.py` module accurately calculates the Gutenberg-Richter $b$-
 * **Aki-Utsu**: Standard maximum likelihood estimation.
 * **Tinti & Mulargia**: Robust estimation that mathematically corrects for the artificial magnitude binning present in modern digital seismic networks.
 * **Shi & Bolt Uncertainty**: Rigorous statistical bounds ($\pm \sigma$) applied to the estimates.
+\n
+## Phase 6: ETAS Model Formulation & Likelihood
+The `model/` module contains the mathematical heart of the Epidemic-Type Aftershock Sequence process:
+* **Kernels (`kernels.py`)**: Implements the temporal Omori-Utsu decay $(t+c)^{-p}$, the spatial power-law distance decay, and the exponential productivity law.
+* **Likelihood Engine (`likelihood.py`)**: A robust spatial-temporal integral evaluator that calculates the exact ETAS log-likelihood over a given catalog for any set of ETAS parameters.
 \n## Repository Structure
 * `sources/`: Catalog downloaders (FDSN + per-agency + scrapers)
 * `catalog/`: Data model, cleaning, deduplication, caching
