@@ -1,6 +1,6 @@
 # ETAS Toolkit — Handoff State
 
-**Current Phase:** Phase 7 (Complete) $\rightarrow$ Phase 8 (Starting)
+**Current Phase:** Phase 8 (Complete) $\rightarrow$ Phase 9 (Starting)
 
 ---
 
@@ -32,6 +32,7 @@ otebooks/).
 * **Phase 7 (ETAS Calibration):** Built the Expectation-Maximization loop in `calibrate/em.py`:
   * **E-Step**: Calculates the branching probability matrix (the likelihood of event $j$ being triggered by event $i$, or being background).
   * **M-Step**: Updates parameters ($\mu, K, c, p, \alpha, d, q$) iteratively to maximize the expected log-likelihood using L-BFGS-B optimization.
+* **Phase 8 (Stochastic Declustering):** Built `decluster/stochastic.py` to isolate true background seismicity by probabilistically thinning the catalog using the ETAS branching matrix $P_{ij}$.
 
 ## 2. Verified
 * **Phase 4 Verification:** Successfully executed 
