@@ -64,7 +64,11 @@ The `model/` module contains the mathematical heart of the Epidemic-Type Aftersh
 The `calibrate/em.py` module trains the ETAS model to learn the optimal triggering parameters for any given earthquake catalog using Expectation-Maximization:
 * **E-Step**: Computes the full $N \times N$ triggering probability matrix (who triggered whom).
 * **M-Step**: Uses numerical optimization (L-BFGS-B) bounded by the probabilities to maximize the expected complete-data log-likelihood.
-\n## Repository Structure
+\n
+## Phase 8: Stochastic Declustering
+The `decluster/stochastic.py` module isolates independent background earthquakes by probabilistically filtering out triggered aftershocks. It utilizes the branching probability matrix $P_{ij}$ calculated by the ETAS E-step.
+
+## Repository Structure
 * `sources/`: Catalog downloaders (FDSN + per-agency + scrapers)
 * `catalog/`: Data model, cleaning, deduplication, caching
 * `quality/`: Mc estimation, b-value, QC
