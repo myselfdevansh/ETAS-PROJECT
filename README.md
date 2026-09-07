@@ -72,6 +72,10 @@ The `decluster/stochastic.py` module isolates independent background earthquakes
 ## Phase 9: Simulation & Bootstrapping
 The `simulate/branching.py` module uses Monte Carlo methods and inverse transform sampling to mathematically forward-simulate synthetic ETAS catalogs, generating both spontaneous background activity and multi-generational triggered aftershock sequences.
 
+
+## Phase 10: Evaluation & CSEP Testing
+The `evaluate/csep.py` module introduces rigorous statistical testing (based on the Collaboratory for the Study of Earthquake Predictability frameworks). It evaluates ETAS forecasts against real-world validation data using tests like the Poisson N-test to ensure the model doesn't systematically over or under-predict seismicity.
+
 ## Repository Structure
 * `sources/`: Catalog downloaders (FDSN + per-agency + scrapers)
 * `catalog/`: Data model, cleaning, deduplication, caching
