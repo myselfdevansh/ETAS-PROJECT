@@ -59,6 +59,11 @@ The `quality/b_value.py` module accurately calculates the Gutenberg-Richter $b$-
 The `model/` module contains the mathematical heart of the Epidemic-Type Aftershock Sequence process:
 * **Kernels (`kernels.py`)**: Implements the temporal Omori-Utsu decay $(t+c)^{-p}$, the spatial power-law distance decay, and the exponential productivity law.
 * **Likelihood Engine (`likelihood.py`)**: A robust spatial-temporal integral evaluator that calculates the exact ETAS log-likelihood over a given catalog for any set of ETAS parameters.
+\n
+## Phase 7: ETAS Calibration (EM Algorithm)
+The `calibrate/em.py` module trains the ETAS model to learn the optimal triggering parameters for any given earthquake catalog using Expectation-Maximization:
+* **E-Step**: Computes the full $N \times N$ triggering probability matrix (who triggered whom).
+* **M-Step**: Uses numerical optimization (L-BFGS-B) bounded by the probabilities to maximize the expected complete-data log-likelihood.
 \n## Repository Structure
 * `sources/`: Catalog downloaders (FDSN + per-agency + scrapers)
 * `catalog/`: Data model, cleaning, deduplication, caching
