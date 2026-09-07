@@ -68,6 +68,10 @@ The `calibrate/em.py` module trains the ETAS model to learn the optimal triggeri
 ## Phase 8: Stochastic Declustering
 The `decluster/stochastic.py` module isolates independent background earthquakes by probabilistically filtering out triggered aftershocks. It utilizes the branching probability matrix $P_{ij}$ calculated by the ETAS E-step.
 
+
+## Phase 9: Simulation & Bootstrapping
+The `simulate/branching.py` module uses Monte Carlo methods and inverse transform sampling to mathematically forward-simulate synthetic ETAS catalogs, generating both spontaneous background activity and multi-generational triggered aftershock sequences.
+
 ## Repository Structure
 * `sources/`: Catalog downloaders (FDSN + per-agency + scrapers)
 * `catalog/`: Data model, cleaning, deduplication, caching
