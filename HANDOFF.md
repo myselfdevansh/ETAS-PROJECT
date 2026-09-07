@@ -1,6 +1,6 @@
 # ETAS Toolkit — Handoff State
 
-**Current Phase:** Phase 6 (Complete) $\rightarrow$ Phase 7 (Starting)
+**Current Phase:** Phase 7 (Complete) $\rightarrow$ Phase 8 (Starting)
 
 ---
 
@@ -29,6 +29,9 @@ otebooks/).
   * Temporal (Omori-Utsu) and spatial (power-law) triggering decay kernels.
   * The exponential aftershock productivity law.
   * The complex spatial-temporal log-likelihood integral evaluator (`model/likelihood.py`).
+* **Phase 7 (ETAS Calibration):** Built the Expectation-Maximization loop in `calibrate/em.py`:
+  * **E-Step**: Calculates the branching probability matrix (the likelihood of event $j$ being triggered by event $i$, or being background).
+  * **M-Step**: Updates parameters ($\mu, K, c, p, \alpha, d, q$) iteratively to maximize the expected log-likelihood using L-BFGS-B optimization.
 
 ## 2. Verified
 * **Phase 4 Verification:** Successfully executed 
